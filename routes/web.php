@@ -14,10 +14,7 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/',[PostController::class,'index']);
-// Route::get('/', function() {
-//     return view('posts.index');
-// });
-
-Route::get('/posts/{post}', [PostController::class ,'show']);
-// '/posts/{対象データのID}'にGetリクエストが来たら、PostControllerのshowメソッドを実行する
+Route::get('/', [PostController::class, 'index']);
+Route::get('/posts/create', [PostController::class, 'create']); //'/posts/{post}'のルーティングより上に書かないと、'/posts/{post}のshowメソッドが実行されてしまい想定外の挙動になる'
+Route::get('/posts/{post}', [PostController::class, 'show']); // '/posts/{対象データのID}'にGetリクエストが来たら、PostControllerのshowメソッドを実行する
+Route::post('/posts', [PostController::class, 'store']);
